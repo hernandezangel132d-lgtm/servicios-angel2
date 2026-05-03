@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Servicios de Ángel</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#0a2540;
+    color:white;
+    overflow-x:hidden;
+}
+
+/* 🌌 FONDO ANIMADO */
+canvas{
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:-1;
+}
+
+/* NAV */
+nav{
+    position:fixed;
+    width:100%;
+    backdrop-filter:blur(10px);
+    background:rgba(10,37,64,0.6);
+    padding:15px 20px;
+    display:flex;
+    justify-content:space-between;
+    z-index:1000;
+}
+
+.logo{
+    background:#25D366;
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-weight:bold;
+}
+
+/* MENU */
+.menu-toggle{
+    font-size:25px;
+    cursor:pointer;
+}
+
+.menu{
+    position:fixed;
+    top:0;
+    right:-100%;
+    width:70%;
+    height:100%;
+    background:#1e3c72;
+    transition:0.4s;
+    padding:40px 20px;
+}
+
+.menu.active{ right:0; }
+
+.menu li{
+    margin:20px 0;
+}
+
+.menu a{
+    color:white;
+    text-decoration:none;
+    font-size:18px;
+}
+
+/* HERO */
+.hero{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+}
+
+.hero h1{
+    font-size:2.5em;
+    animation:fadeUp 1s ease;
+}
+
+/* BOTÓN PRO */
+.btn{
+    background:#25D366;
+    padding:15px 30px;
+    border-radius:30px;
+    color:white;
+    text-decoration:none;
+    display:inline-block;
+    margin-top:20px;
+    position:relative;
+    overflow:hidden;
+    animation:glow 2s infinite;
+}
+
+.btn::before{
+    content:"";
+    position:absolute;
+    width:300%;
+    height:300%;
+    background:rgba(255,255,255,0.2);
+    top:100%;
+    left:-100%;
+    transform:rotate(45deg);
+    transition:0.5s;
+}
+
+.btn:hover::before{
+    top:-50%;
+    left:-50%;
+}
+
+.btn:active{
+    transform:scale(0.95);
+}
+
+/* SECCIONES */
+section{
+    padding:80px 20px;
+    text-align:center;
+}
+
+.servicios{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+    align-items:center;
+}
+
+.card{
+    background:#1e3c72;
+    padding:20px;
+    border-radius:15px;
+    width:90%;
+    max-width:300px;
+    transition:0.4s;
+}
+
+.card:hover{
+    transform:translateY(-10px) scale(1.05) rotate(1deg);
+}
+
+/* PORTFOLIO */
+.portfolio img{
+    width:100%;
+    max-width:320px;
+    border-radius:15px;
+    transition:0.4s;
+}
+
+.portfolio img:hover{
+    transform:scale(1.08);
+}
+
+/* WHATSAPP */
+.wsp{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    background:#25D366;
+    padding:15px;
+    border-radius:50%;
+    font-size:25px;
+    animation:pulse 2s infinite, float 3s infinite;
+}
+
+/* ANIMACIONES */
+@keyframes glow{
+    0%{box-shadow:0 0 5px #25D366;}
+    50%{box-shadow:0 0 20px #25D366;}
+    100%{box-shadow:0 0 5px #25D366;}
+}
+
+@keyframes pulse{
+    0%{box-shadow:0 0 0 0 rgba(37,211,102,0.7);}
+    70%{box-shadow:0 0 0 15px rgba(37,211,102,0);}
+}
+
+@keyframes float{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-8px);}
+}
+
+@keyframes fadeUp{
+    from{opacity:0; transform:translateY(30px);}
+    to{opacity:1; transform:translateY(0);}
+}
+
+/* SCROLL */
+.hidden{
+    opacity:0;
+    transform:translateY(40px);
+    transition:1s;
+}
+
+.show{
+    opacity:1;
+    transform:translateY(0);
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="bg"></canvas>
+
+<nav>
+    <div class="logo">A</div>
+    <div class="menu-toggle" onclick="toggleMenu()">
+        <i class="fas fa-bars"></i>
+    </div>
+</nav>
+
+<div class="menu" id="menu">
+    <ul>
+        <li><a href="#inicio" onclick="toggleMenu()">Inicio</a></li>
+        <li><a href="#servicios" onclick="toggleMenu()">Servicios</a></li>
+        <li><a href="#trabajos" onclick="toggleMenu()">Trabajos</a></li>
+        <li><a href="#contacto" onclick="toggleMenu()">Contacto</a></li>
+    </ul>
+</div>
+
+<section class="hero" id="inicio">
+    <div>
+        <h1>Servicios de Ángel</h1>
+        <a href="https://wa.me/51901966633?text=Hola%20Ángel%2C%20vi%20tu%20página%20web%20y%20me%20interesa%20tu%20servicio." class="btn">
+            <i class="fab fa-whatsapp"></i> Contáctame
+        </a>
+    </div>
+</section>
+
+<section id="servicios" class="hidden">
+    <h2>Servicios</h2>
+    <div class="servicios">
+        <div class="card">Reparación</div>
+        <div class="card">Mantenimiento</div>
+        <div class="card">Asesoría</div>
+    </div>
+</section>
+
+<section id="trabajos" class="hidden">
+    <h2>Trabajos realizados</h2>
+    <div class="portfolio">
+        <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789">
+    </div>
+</section>
+
+<section id="contacto" class="hidden">
+    <h2>Contacto</h2>
+    <a href="https://wa.me/51901966633?text=Hola%20Ángel%2C%20vi%20tu%20página%20web%20y%20me%20interesa%20tu%20servicio." class="btn">
+        Enviar mensaje
+    </a>
+</section>
+
+<a href="https://wa.me/51901966633?text=Hola%20Ángel%2C%20vi%20tu%20página%20web%20y%20me%20interesa%20tu%20servicio." class="wsp">
+<i class="fab fa-whatsapp"></i>
+</a>
+
+<script>
+function toggleMenu(){
+    document.getElementById("menu").classList.toggle("active");
+}
+
+/* SCROLL */
+const elements=document.querySelectorAll('.hidden');
+const observer=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+        if(entry.isIntersecting){
+            entry.target.classList.add('show');
+        }
+    });
+});
+elements.forEach(el=>observer.observe(el));
+
+/* 🌌 PARTICULAS */
+const canvas=document.getElementById("bg");
+const ctx=canvas.getContext("2d");
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+let particles=[];
+for(let i=0;i<60;i++){
+    particles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:2});
+}
+
+function animate(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    ctx.fillStyle="white";
+    particles.forEach(p=>{
+        ctx.beginPath();
+        ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+        ctx.fill();
+        p.y+=0.3;
+        if(p.y>canvas.height) p.y=0;
+    });
+    requestAnimationFrame(animate);
+}
+animate();
+</script>
+
+</body>
+</html>
